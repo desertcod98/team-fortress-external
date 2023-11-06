@@ -7,6 +7,7 @@ Entity::Entity(Memory* memory_p, uint32_t address_p) {
 	address = address_p;
 	memory = memory_p;
 	name = memory->ReadString(address + offsets::entity_name, 32);
+	team = memory->Read<int>(address + offsets::entity_team);
 	//MessageBoxA(NULL, name.c_str(), "Dll injected", MB_OK);
 	//team = memory->Read<uint32_t>(address + offsets::entity_team);
 }
