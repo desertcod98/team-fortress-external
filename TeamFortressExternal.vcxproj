@@ -132,12 +132,17 @@
     <ClCompile Include="Geom.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Modules\Esp.cpp" />
+    <ClCompile Include="Modules\Modules.cpp" />
     <ClCompile Include="StringUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Geom.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="Modules\Esp.h" />
+    <ClInclude Include="Modules\Module.h" />
+    <ClInclude Include="Modules\Modules.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="StringUtil.h" />
   </ItemGroup>

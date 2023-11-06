@@ -8,6 +8,7 @@
 #include "Entity.h"
 #include <vector>
 #include <algorithm>
+#include "Modules/Modules.h"
 
 const double PI = 3.14159265358979323846;
 int screenXa = GetSystemMetrics(SM_CXSCREEN);
@@ -37,8 +38,11 @@ int main()
         entities.push_back(entity);
     }
     
-    setRect();
+    modulesInit();
+
+
     while (true) {
+        tick();
         view_matrix_t vm = memory.Read<view_matrix_t>(engineDllAddress + offsets::view_matrix);
         for (int i = 0; i < entities.size(); i++) {
             if (entities[i].getTeam() == player.getTeam()) continue;

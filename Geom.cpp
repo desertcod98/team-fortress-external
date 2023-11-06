@@ -8,11 +8,13 @@ int screenY = GetSystemMetrics(SM_CYSCREEN);
 HBRUSH EnemyBrush = CreateSolidBrush(0x000000FF);
 HDC hdc = GetDC(FindWindowA(NULL, "Team Fortress 2"));
 
-RECT rect;
-
-void setRect() {
-	GetWindowRect(FindWindowA(NULL, "Team Fortress 2"), &rect);
+RECT getRect() {
+	RECT tempRect;
+	GetWindowRect(FindWindowA(NULL, "Team Fortress 2"), &tempRect);
+	return tempRect;
 }
+
+RECT rect = getRect();
 
 Vec3 WorldToScreen(const Vec3 pos, view_matrix_t matrix) {
 	int width = rect.right - rect.left;
