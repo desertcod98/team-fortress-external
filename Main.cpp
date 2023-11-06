@@ -40,10 +40,9 @@ int main()
     setRect();
     while (true) {
         view_matrix_t vm = memory.Read<view_matrix_t>(engineDllAddress + offsets::view_matrix);
-
         for (int i = 0; i < entities.size(); i++) {
-            /*if (entities[i].getTeam() == player.getTeam()) continue;
-            if (entities[i].isDead()) continue;*/
+            //if (entities[i].getTeam() == player.getTeam()) continue;
+            if (entities[i].isDead()) continue;
 
             //ESP
             Vec3 feetPos = entities[i].getFeetPos();

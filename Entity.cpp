@@ -19,9 +19,9 @@ Vec3 Entity::getFeetPos() {
 //	return memory->Read<uint32_t>(address + offsets::entity_health);
 //}
 
-//bool Entity::isDead() {
-//	return memory->Read<uint32_t>(address + offsets::entity_is_dead);
-//}
+bool Entity::isDead() {
+	return memory->Read<uint32_t>(address + offsets::entity_is_dead);
+}
 
 //void Entity::setYaw(float yaw) {
 //	float readonly_yaw = memory->Read<float>(address + offsets::readonly_yaw);

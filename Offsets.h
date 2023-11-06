@@ -14,8 +14,9 @@ namespace offsets {
 	static int entity_name = 0xFB4;
 	static int entity_coords = 0x2B8;
 	static int entity_team = 0x22C; //1 is spectator, 2 and 3 are teams
+	static int entity_is_dead = 0xB84; //TODO check if correct
 
 	//view matrix
-	static int view_matrix = 0x59FD80; //TODO add correct value
+	static int view_matrix = 0x59FD80; 
 }
 

@@ -22,7 +22,7 @@ public:
 	}
 
 	//int getHealth();
-	//bool isDead();
+	bool isDead();
 	Vec3 getFeetPos();
 	//void setYaw(float yaw);
 	//void setPitch(float pitch);
