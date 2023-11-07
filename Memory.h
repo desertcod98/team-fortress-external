@@ -5,13 +5,28 @@
 #include "Geom.h"
 
 class Memory {
+protected:
+	static Memory* instance;
+	Memory(const std::string processName);
 private:
 	DWORD id = 0; //process id
 	HANDLE process = NULL;
 	uintptr_t moduleAddress;
 
 public:
-	Memory(const std::string processName);
+
+	/**
+	 * Singletons should not be cloneable.
+	 */
+	Memory(Memory& other) = delete;
+	/**
+	 * Singletons should not be assignable.
+	 */
+	void operator=(const Memory&) = delete;
+
+	static Memory* GetInstance();
+
+	
 	~Memory();
 
 	DWORD GetProcessId();
@@ -26,34 +41,20 @@ public:
 	bool isValidEntity(uint32_t address);
 
 	template <typename T>
-	T Read(uintptr_t address, int size = -1) {
+	T Read(uintptr_t address, int size = 0) {
 		T value;
-		const int res = ReadProcessMemory(this->process, (LPCVOID)address, &value, size == -1 ? sizeof(T) : size, NULL);
+		const int res = ReadProcessMemory(this->process, (LPCVOID)address, &value, size == 0 ? sizeof(T) : size, NULL);
 		return value;
-	}
-
-	std::string ReadString(uintptr_t address, int size) {
-		char res[128];
-		ReadProcessMemory(this->process, (LPCVOID)address, &res, sizeof(res), NULL);
-		res[strlen(res)] = '\0';
-		std::string final = std::string(res);
-		return final;
-	}
-
-	Vec3 ReadVec3(uintptr_t address) {
-		byte buf[4 * 3];
-		ReadProcessMemory(this->process, (LPCVOID)address, &buf, sizeof(buf), NULL);
-		float x;
-		float y;
-		float z;
-		memcpy(&x, buf, 4);
-		memcpy(&y, buf + 4, 4);
-		memcpy(&z, buf + 8, 4);
-		return Vec3{ x,y,z };
 	}
 
 	template <typename T>
 	bool Write(uintptr_t address, T value) {
 		return WriteProcessMemory(this->process, (LPVOID)address, &value, sizeof(T), NULL);
 	}
+
+	std::string ReadString(uintptr_t address, int size);
+
+	Vec3 ReadVec3(uintptr_t address);
 };
+
+

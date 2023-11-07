@@ -16,34 +16,33 @@ int screenYa = GetSystemMetrics(SM_CYSCREEN);
 
 int main()
 {
-    auto memory = Memory("hl2.exe");
-    auto engineDllAddress = memory.GetModuleAddress("engine.dll");
+    auto memory = Memory::GetInstance();
+    auto engineDllAddress = memory->GetModuleAddress("engine.dll");
 
-    auto entityListBase = memory.Read<uintptr_t>(engineDllAddress + offsets::entitylist_ptr);
+    auto entityListBase = memory->Read<uintptr_t>(engineDllAddress + offsets::entitylist_ptr);
 
-    auto playerBase = memory.Read<uintptr_t>(entityListBase + offsets::player_ptr);
-    Entity player = Entity(&memory, playerBase);
+    auto playerBase = memory->Read<uintptr_t>(entityListBase + offsets::player_ptr);
+    Entity player = Entity(memory, playerBase);
     std::vector<Entity> entities;
     const auto firstEntityPtr = entityListBase + offsets::first_entity_ptr;
-    Entity firstEntity = Entity(&memory, memory.Read<uintptr_t>(firstEntityPtr));
+    Entity firstEntity = Entity(memory, memory->Read<uintptr_t>(firstEntityPtr));
     entities.push_back(firstEntity);
 
     for (int i = 0; i < 32; i++) {
         const uintptr_t entityPtr = firstEntityPtr + ((i + 1) * offsets::entity_ptr_offset);
-        const auto entityBase = memory.Read<uintptr_t>(entityPtr);
+        const auto entityBase = memory->Read<uintptr_t>(entityPtr);
 
         if (entityBase == 0x0) break;
 
-        Entity entity = Entity(&memory, entityBase);
+        Entity entity = Entity(memory, entityBase);
         entities.push_back(entity);
     }
     
     modulesInit();
 
-
     while (true) {
         tick();
-        view_matrix_t vm = memory.Read<view_matrix_t>(engineDllAddress + offsets::view_matrix);
+        view_matrix_t vm = memory->Read<view_matrix_t>(engineDllAddress + offsets::view_matrix);
         for (int i = 0; i < entities.size(); i++) {
             if (entities[i].getTeam() == player.getTeam()) continue;
             if (entities[i].isDead()) continue;

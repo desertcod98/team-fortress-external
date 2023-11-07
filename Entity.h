@@ -4,6 +4,7 @@
 #include "Offsets.h"
 #include "Geom.h"
 
+
 class Entity {
 	uint32_t address;
 	int team;

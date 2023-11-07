@@ -1,6 +1,4 @@
 #include "Entity.h"
-#include "Geom.h"
-#include "Memory.h"
 
 
 Entity::Entity(Memory* memory_p, uint32_t address_p) {
