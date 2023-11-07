@@ -11,10 +11,9 @@ Esp::Esp() : Module("Esp") , player(GameData::GetInstance()->getPlayer()){
 }
 
 void Esp::tick() const{
-    auto engineDllAddress = memory->GetModuleAddress("engine.dll");
-    view_matrix_t vm = memory->Read<view_matrix_t>(engineDllAddress + offsets::view_matrix);
+    view_matrix_t vm = memory->Read<view_matrix_t>(engineDllBase + offsets::view_matrix);
     for (int i = 0; i < entities.size(); i++) {
-        if (entities[i].getTeam() == player->getTeam()) continue;
+        //if (entities[i].getTeam() == player->getTeam()) continue; //TODO just get GameData::getEnemyEntities()
         if (entities[i].isDead()) continue;
 
         //ESP

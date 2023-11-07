@@ -29,16 +29,23 @@ GameData::GameData() : memory(Memory::GetInstance()) {
 
         Entity entity = Entity(entityBase);
         entities.push_back(entity);
+        
+        if (entity.getTeam() != player->getTeam()) {
+            enemyEntities.push_back(entity);
+        }
     }
 }
 
 Entity* GameData::getPlayer() {
-    std::cout << std::hex << this->player;
 	return this->player;
 }
 
 std::vector<Entity> GameData::getEntities() {
 	return this->entities;
+}
+
+std::vector<Entity> GameData::getEnemyEntities() {
+	return this->enemyEntities;
 }
 
 uintptr_t GameData::getPlayerAddress() {

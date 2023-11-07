@@ -4,6 +4,7 @@
 Entity::Entity(uint32_t address_p) {
 	address = address_p;
 	memory = Memory::GetInstance();
+	engineDllBase = memory->GetModuleAddress("engine.dll");
 	name = memory->ReadString(address + offsets::entity_name, 32);
 	team = memory->Read<int>(address + offsets::entity_team);
 	//MessageBoxA(NULL, name.c_str(), "Dll injected", MB_OK);
@@ -14,6 +15,11 @@ Vec3 Entity::getFeetPos() const {
 	return memory->ReadVec3(address + offsets::entity_coords);
 }
 
+Vec3 Entity::getHeadPos() const {
+	return memory->ReadVec3(address + offsets::entity_coords) + Vec3{0,0,70};
+}
+
+
 //int Entity::getHealth() {
 //	return memory->Read<uint32_t>(address + offsets::entity_health);
 //}
@@ -22,19 +28,11 @@ bool Entity::isDead() const {
 	return memory->Read<uint32_t>(address + offsets::entity_is_dead);
 }
 
-//void Entity::setYaw(float yaw) {
-//	float readonly_yaw = memory->Read<float>(address + offsets::readonly_yaw);
-//	float delta_yaw = yaw - readonly_yaw;
-//	uintptr_t writeable_yaw_addr = memory->FindDMAAddy(memory->GetterModuleAddress(), offsets::writeable_yaw);
-//	float writeable_yaw = memory->Read<float>(writeable_yaw_addr);
-//	memory->Write(writeable_yaw_addr, writeable_yaw + delta_yaw);
-//}
-//
-//void Entity::setPitch(float pitch) {
-//	float readonly_pitch = memory->Read<float>(address + offsets::readonly_pitch);
-//	float delta_pitch =  pitch - readonly_pitch;
-//	uintptr_t writeable_pitch_addr = memory->FindDMAAddy(memory->GetterModuleAddress(), offsets::writeable_pitch);
-//	float writeable_pitch = memory->Read<float>(writeable_pitch_addr);
-//	memory->Write(writeable_pitch_addr, writeable_pitch + delta_pitch);
-//}
-//
+void Entity::setYaw(float yaw) {
+	memory->Write(engineDllBase + offsets::writeable_yaw, yaw);
+}
+
+void Entity::setPitch(float pitch) {
+	memory->Write(engineDllBase + offsets::writeable_pitch, pitch);
+}
+

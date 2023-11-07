@@ -10,6 +10,7 @@ protected:
 private:
 	Entity* player;
 	std::vector<Entity> entities;
+	std::vector<Entity> enemyEntities;
 	Memory* memory;
 
 	uintptr_t getPlayerAddress();
@@ -20,4 +21,5 @@ public:
 
 	Entity* getPlayer();
 	std::vector<Entity> getEntities();
+	std::vector<Entity> getEnemyEntities();
 };

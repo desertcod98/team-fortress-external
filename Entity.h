@@ -10,6 +10,7 @@ class Entity {
 	int team;
 	std::string name;
 	Memory* memory;
+	uintptr_t engineDllBase;
 
 public:
 	Entity(uint32_t address);
@@ -25,7 +26,8 @@ public:
 	//int getHealth();
 	bool isDead() const;
 	Vec3 getFeetPos() const;
-	//void setYaw(float yaw);
-	//void setPitch(float pitch);
+	Vec3 getHeadPos() const;
+	void setYaw(float yaw);
+	void setPitch(float pitch);
 };
 

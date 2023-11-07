@@ -7,10 +7,12 @@ protected:
 	bool active = true;
 	std::string name; 
 	Memory* memory;
+	uintptr_t engineDllBase;
 public:
 	Module(std::string nameP) {
 		name = nameP;
 		memory = Memory::GetInstance();
+		engineDllBase = memory->GetModuleAddress("engine.dll");
 	}
 	
 	void toggle() {
