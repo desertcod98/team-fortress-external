@@ -8,17 +8,30 @@ int screenY = GetSystemMetrics(SM_CYSCREEN);
 HBRUSH EnemyBrush = CreateSolidBrush(0x000000FF);
 HDC hdc = GetDC(FindWindowA(NULL, "Team Fortress 2"));
 
+int width;
+int height;
+
 RECT getRect() {
 	RECT tempRect;
 	GetWindowRect(FindWindowA(NULL, "Team Fortress 2"), &tempRect);
+	width = tempRect.right - tempRect.left;
+	height = tempRect.bottom - tempRect.top;
 	return tempRect;
 }
 
 RECT rect = getRect();
 
+int getWidth() {
+	return width;
+}
+
+int getHeight() {
+	return height;
+}
+
 Vec3 WorldToScreen(const Vec3 pos, view_matrix_t matrix) {
-	int width = rect.right - rect.left;
-	int height = rect.bottom - rect.top;
+	/*int width = rect.right - rect.left;
+	int height = rect.bottom - rect.top;*/
 	float screenX = (matrix[0][0] * pos.x) + (matrix[0][1] * pos.y) + (matrix[0][2] * pos.z) + matrix[0][3];
 	float screenY = (matrix[1][0] * pos.x) + (matrix[1][1] * pos.y) + (matrix[1][2] * pos.z) + matrix[1][3];
 	float screenW = (matrix[3][0] * pos.x) + (matrix[3][1] * pos.y) + (matrix[3][2] * pos.z) + matrix[3][3];

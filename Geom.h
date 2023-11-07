@@ -28,8 +28,9 @@ struct view_matrix_t {
 };
 
 Vec3 WorldToScreen(const Vec3 pos, view_matrix_t matrix);
-void setRect();
 void DrawLine(float StartX, float StartY, float EndX, float EndY);
 void DrawBorderBox(int x, int y, int w, int h, int thickness);
 void DrawFilledRect(int x, int y, int w, int h);
 float Vec3SquareDistance(Vec3 v, Vec3 w);
+int getWidth();
+int getHeight();

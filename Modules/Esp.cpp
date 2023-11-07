@@ -15,7 +15,6 @@ void Esp::tick() const{
     for (int i = 0; i < enemyEntities.size(); i++) {
         if (enemyEntities[i].isDead()) continue;
 
-        //ESP
         Vec3 feetPos = enemyEntities[i].getFeetPos();
         Vec3 screenFeetPos = WorldToScreen(feetPos, vm);
         Vec3 headPos = feetPos + Vec3{ 0,0,70 };
