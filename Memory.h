@@ -37,8 +37,8 @@ public:
 
 	uintptr_t FindDMAAddy(uintptr_t ptr, std::vector<unsigned int> offsets);
 
-	bool isValidAddress(uintptr_t address);
-	bool isValidEntity(uint32_t address);
+	/*bool isValidAddress(uintptr_t address);
+	bool isValidEntity(uint32_t address);*/
 
 	template <typename T>
 	T Read(uintptr_t address, int size = 0) {

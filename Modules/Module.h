@@ -1,13 +1,16 @@
 #pragma once
 #include <string>
+#include "../Memory.h"
 
 class Module {
-private:
+protected:
 	bool active = true;
-	std::string name;
+	std::string name; 
+	Memory* memory;
 public:
 	Module(std::string nameP) {
 		name = nameP;
+		memory = Memory::GetInstance();
 	}
 	
 	void toggle() {

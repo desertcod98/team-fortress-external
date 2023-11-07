@@ -1,16 +1,16 @@
 #include "Entity.h"
 
 
-Entity::Entity(Memory* memory_p, uint32_t address_p) {
+Entity::Entity(uint32_t address_p) {
 	address = address_p;
-	memory = memory_p;
+	memory = Memory::GetInstance();
 	name = memory->ReadString(address + offsets::entity_name, 32);
 	team = memory->Read<int>(address + offsets::entity_team);
 	//MessageBoxA(NULL, name.c_str(), "Dll injected", MB_OK);
 	//team = memory->Read<uint32_t>(address + offsets::entity_team);
 }
 
-Vec3 Entity::getFeetPos() {
+Vec3 Entity::getFeetPos() const {
 	return memory->ReadVec3(address + offsets::entity_coords);
 }
 
@@ -18,7 +18,7 @@ Vec3 Entity::getFeetPos() {
 //	return memory->Read<uint32_t>(address + offsets::entity_health);
 //}
 
-bool Entity::isDead() {
+bool Entity::isDead() const {
 	return memory->Read<uint32_t>(address + offsets::entity_is_dead);
 }
 

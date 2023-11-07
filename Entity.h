@@ -12,19 +12,19 @@ class Entity {
 	Memory* memory;
 
 public:
-	Entity(Memory* memory, uint32_t address);
+	Entity(uint32_t address);
 
-	std::string getName() {
+	std::string getName() const{
 		return name;
 	}
 
-	int getTeam() {
+	int getTeam() const {
 		return team;
 	}
 
 	//int getHealth();
-	bool isDead();
-	Vec3 getFeetPos();
+	bool isDead() const;
+	Vec3 getFeetPos() const;
 	//void setYaw(float yaw);
 	//void setPitch(float pitch);
 };
