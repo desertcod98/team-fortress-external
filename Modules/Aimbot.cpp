@@ -34,6 +34,7 @@ int Aimbot::getClosestEntityIdx() const{
     int closestEntitySquareDistance = -1;
     for (int i = 0; i < enemyEntities.size(); i++) {
         if (enemyEntities[i].isDead()) continue;
+
         if (closestEntityIdx == -1) {
             closestEntityIdx = i;
             closestEntitySquareDistance = Vec3SquareDistance(player->getFeetPos(), enemyEntities[i].getFeetPos());

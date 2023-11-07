@@ -7,17 +7,16 @@
 #include "../GameData.h"
 
 Esp::Esp() : Module("Esp") , player(GameData::GetInstance()->getPlayer()){
-    entities = GameData::GetInstance()->getEntities();
+    enemyEntities = GameData::GetInstance()->getEnemyEntities();
 }
 
 void Esp::tick() const{
     view_matrix_t vm = memory->Read<view_matrix_t>(engineDllBase + offsets::view_matrix);
-    for (int i = 0; i < entities.size(); i++) {
-        //if (entities[i].getTeam() == player->getTeam()) continue; //TODO just get GameData::getEnemyEntities()
-        if (entities[i].isDead()) continue;
+    for (int i = 0; i < enemyEntities.size(); i++) {
+        if (enemyEntities[i].isDead()) continue;
 
         //ESP
-        Vec3 feetPos = entities[i].getFeetPos();
+        Vec3 feetPos = enemyEntities[i].getFeetPos();
         Vec3 screenFeetPos = WorldToScreen(feetPos, vm);
         Vec3 headPos = feetPos + Vec3{ 0,0,70 };
         Vec3 screenHeadPos = WorldToScreen(headPos, vm);

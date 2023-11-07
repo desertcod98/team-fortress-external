@@ -6,7 +6,7 @@
 
 class Esp : public Module {
 private:
-	std::vector<Entity> entities;
+	std::vector<Entity> enemyEntities;
 	Entity* player;
 public:
 	Esp();
