@@ -30,13 +30,6 @@ void Triggerbot::tick() const {
         float h = screenFeetPos.y - screenHeadPos.y;
         float w = h / 1.6;
 
-        /*std::cout <<"w:" << screenWidth / 2.f << std::endl;
-        std::cout <<"h:"<< screenHeight/2.f << std::endl;
-        std::cout <<"x:"<< screenHeadPos.x << std::endl;
-        std::cout <<"y:"<< screenHeadPos.y << std::endl;
-        std::cout << "fx:" << screenFeetPos.x << std::endl;
-        std::cout << "fy:" << screenFeetPos.y << std::endl << std::endl;*/
-
         if (screenHeadPos.x != 0 && screenHeadPos.y != 0) {
             if (screenWidth / 2.f < screenHeadPos.x + w/2 && screenWidth / 2.f > screenHeadPos.x - w/2
                 && screenHeight / 2.f < screenFeetPos.y && screenHeight / 2.f > screenHeadPos.y
