@@ -11,10 +11,6 @@
 #include "Modules/Modules.h"
 #include "GameData.h"
 
-const double PI = 3.14159265358979323846;
-int screenXa = GetSystemMetrics(SM_CXSCREEN);
-int screenYa = GetSystemMetrics(SM_CYSCREEN);
-
 int main()
 {
     GameData *gameData = GameData::GetInstance();
