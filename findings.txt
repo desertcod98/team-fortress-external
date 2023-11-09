@@ -1,0 +1,31 @@
+entitylist first bot 0x34
+entitylist offset 0x14
+
+BONES:
+addresses showed in ida: 0x15310000 (seems to be the right one!), 0x0096CD68
+it seems like every bone has a 3x4 matrix associated, and in particular:
+bone_matrix[0][3], bone_matrix[1][3], bone_matrix[2][3] seem to be the 
+x,y,z coordinate of each bone
+the order of the various bones in unknown, theoretically the one I want
+(head bone) is the one with the hightst z coordinate?
+
+candidates: 15310120, 237
+		15310510, 240
+
+the actual headbone seems to be located at 0x15310600
+
+the final structure may look something like bonematrices[?]
+being a vector, in which each element is 3x4 matrix, so being 12x4 bytes -> 48bytes
+
+so to access the start of the head bone it should be bonemtrices[15] (0x15310600-0x15310000 / 48bytes = 15)
+
+playing with a single bot his (likely to be) bone matrix starts at 0x14EC0020, maybe the bone matrices of the other entities
+are stored from this address onwards?`
+
+UPDATE: it seems that only worked for third person? when opening memory viewer AllocationBase and Base point to the start
+of one of the matrices it seems?
+
+UPDATE: getting the bone matrix of a bot (i tried going to the AllocationBase address), the head bone is after 140 bytes,
+15350140 if the base if 15350000
+
+UPDATE: the start of the matrix of a bot is always (probably) at "materialsystem.dll"+0012FEFC

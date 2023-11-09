@@ -11,7 +11,6 @@ INPUT input;
 Triggerbot::Triggerbot() : Module("Triggerbot"), player(GameData::GetInstance()->getPlayer()) {
     enemyEntities = GameData::GetInstance()->getEnemyEntities();
     input.type = INPUT_MOUSE;
-    
 }
 
 void Triggerbot::tick() const {
@@ -24,7 +23,7 @@ void Triggerbot::tick() const {
 
         Vec3 feetPos = enemyEntities[i].getFeetPos();
         Vec3 screenFeetPos = WorldToScreen(feetPos, vm);
-        Vec3 headPos = feetPos + Vec3{ 0,0,70 };
+        Vec3 headPos = feetPos + Vec3{ 0,0,65 };
         Vec3 screenHeadPos = WorldToScreen(headPos, vm);
 
         float h = screenFeetPos.y - screenHeadPos.y;

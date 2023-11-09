@@ -16,7 +16,7 @@ Vec3 Entity::getFeetPos() const {
 }
 
 Vec3 Entity::getHeadPos() const {
-	return memory->ReadVec3(address + offsets::entity_coords) + Vec3{0,0,70};
+	return memory->ReadVec3(address + offsets::entity_coords) + Vec3{0,0,65};
 }
 
 
