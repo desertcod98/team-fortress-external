@@ -29,3 +29,6 @@ UPDATE: getting the bone matrix of a bot (i tried going to the AllocationBase ad
 15350140 if the base if 15350000
 
 UPDATE: the start of the matrix of a bot is always (probably) at "materialsystem.dll"+0012FEFC
+
+IDEA (probably wrong): maybe sometimes the values of the matrices go all 0s because the entity is not in 
+the fov of the player

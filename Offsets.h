@@ -2,6 +2,7 @@
 
 namespace offsets {
 	static int entitylist_ptr = 0x005DBED8;
+	//static int new_entitylist_ptr?? = "client.dll"+00C57584
 
 	static int writeable_pitch = 0x46A5DC;
 	static int writeable_yaw = 0x46A5E0;
